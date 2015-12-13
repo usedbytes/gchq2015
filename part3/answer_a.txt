@@ -1,0 +1,8 @@
+All joined: buckcoddahliarookcuckoorailhaddock
+Reversed: kcoddahliarookcuckoorailhaddockcub
+       cod: dahliarookcuckoorailhaddockcub
+    dahlia: rookcuckoorailhaddockcub
+      rook: cuckoorailhaddockcub
+    cuckoo: railhaddockcub
+      rail: haddockcub
+   haddock: cub

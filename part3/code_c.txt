@@ -1,0 +1,99 @@
+#!/usr/bin/python2
+#
+# Solver for the GCHQ Director's 2015 Christmas puzzle (part 2C)
+# --------------------------------------------------------------
+# Copyright Brian Starkey 2015 <stark3y@gmail.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+
+code = {
+    'a': '.-',
+    'b': '-...',
+    'c': '-.-.',
+    'd': '-..',
+    'e': '.',
+    'f': '..-.',
+    'g': '--.',
+    'h': '....',
+    'i': '..',
+    'j': '.---',
+    'k': '-.-',
+    'l': '.-..',
+    'm': '--',
+    'n': '-.',
+    'o': '---',
+    'p': '.--.',
+    'q': '--.-',
+    'r': '.-.',
+    's': '...',
+    't': '-',
+    'u': '..-',
+    'v': '...-',
+    'w': '.--',
+    'x': '-..-',
+    'y': '-.--',
+    'z': '--..',
+};
+
+def encode(s):
+    enc = [code[l] for l in s]
+    return ''.join(enc)
+
+def opposite(c):
+    return c.replace('.','*').replace('-', '.').replace('*', '-')
+
+# Morse decoding is apparently very ambiguous
+# So we have to filter with a dictionary
+def filter(l):
+    f = open('words.list', 'r')
+    d = []
+    out = []
+    for line in f:
+        d.append(line.rstrip(' \n\r').lower())
+    f.close()
+    for cdd in l:
+        for word in d:
+            if (word == cdd):
+                out.append(word)
+    return out
+
+def decode(c, s = '', depth = 0, r = None):
+    # Took me a long time to figure out why I couldn't do
+    # r = [] as a default argument...
+    # http://stackoverflow.com/questions/3887079/why-does-initializing-a-variable-via-a-python-default-variable-keep-state-across
+    # Python is weird.
+    if (r == None):
+        r = []
+    if (len(c) == 0):
+        r.append(s)
+        return
+    for (letter, symbol) in code.iteritems():
+        if (c.find(symbol) == 0):
+            decode(c[len(symbol):], s + letter, depth + 1, r)
+    if (s == ''):
+        return filter(r)
+
+clues = ['agony', 'denial', 'witty', 'tepid', 'smart']
+
+print "Clues: %s" % clues
+print "Working..."
+for c in clues:
+    print "%s: %s" % (c, encode(c))
+    print "%s%s = %s" % (' ' * (len(c) + 2), opposite(encode(c)), decode(opposite(encode(c))))

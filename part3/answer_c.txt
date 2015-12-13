@@ -1,0 +1,13 @@
+Clues: ['agony', 'denial', 'witty', 'tepid', 'smart']
+Working...
+agony: .---.----.-.--
+       -...-....-.-.. = ['denial', 'detested']
+denial: -...-....-.-..
+        .---.----.-.-- = ['agony']
+witty: .--..---.--
+       -..--...-.. = ['tepid']
+tepid: -..--...-..
+       .--..---.-- = ['petty', 'witty']
+smart: ...--.-.-.-
+       ---..-.-.-. = ['often']
+

@@ -1,0 +1,9 @@
+$ ./a.out
+Loading 62602 entries. maxlen: 28
+Done. Loaded 62602 of 62602
+643825664 hashes computed
+Found match. Tried 644718383 combinations.
+A: cub
+B: zone
+C: often
+D: layered

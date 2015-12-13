@@ -1,0 +1,11 @@
+$ time ./a.out
+5168431104 hashes computed
+Found match. Tried 5169371089 combinations.
+A: 52
+B: 30.
+C: 87
+D: 208
+
+real    14m2.907s
+user    14m2.653s
+sys     0m0.177s

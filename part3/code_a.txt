@@ -1,0 +1,12 @@
+#!/usr/bin/python2
+
+words = ["buck", "cod", "dahlia", "rook", "cuckoo", "rail", "haddock"]
+joined = ''.join(words)
+rev = joined[::-1]
+
+print "All joined: %s" % joined
+print "Reversed: %s" % rev
+for w in words:
+    idx = rev.find(w)
+    if (idx >= 0):
+        print "%10s: %s" % (w, rev[rev.find(w) + len(w):])
